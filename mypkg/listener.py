@@ -8,11 +8,17 @@ from std_msgs.msg import Float32
 
 rclpy.init()
 node = Node("listener")
+c = {}
 
 def cb(msg):
     n = int(msg.data)
-    node.get_logger().info(f'{n}以上{n+1}以下' )
+    i = f'{n}以上{n+1}以下'
 
+    if i not in c:
+        c[i] = 0
+    c[i] += 1
+
+    node.get_logger().info(f'{i}（{c[i]}回目）')
 
 def main():
     try:
