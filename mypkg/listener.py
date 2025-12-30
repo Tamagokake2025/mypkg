@@ -1,32 +1,19 @@
+# SPDX-FileCopyrightText: 2025 Keitaro Takeda
+# SPDX-License-Identifier: BSD-3-Clause
+
 import rclpy
 from rclpy.node import Node
-from person_msgs.srv import Query
+from std_msgs.msg import Float32
 
 
 rclpy.init()
 node = Node("listener")
 
+def cb(msg):
+    global node
+    node.get_logger().info("乱数: %f" %msg.data)
+
 
 def main():
-    client = node.create_client(Query, 'query')
-    while not client.wait_for_service(timeout_sec=1.0):
-        node.get_logger().info('待機中')
-
-    req = Query.Request()
-    req.name = "武田啓太郎"
-    future = client.call_async(req)
-
-    while rclpy.ok():
-        rclpy.spin_once(node)
-        if future.done():
-            try:
-                response = future.result()
-            except:
-                node.get_logger().info('呼び出し失敗')
-            else:
-                node.get_logger().info("age: {}".format(response.age))
-
-            break
-
-    node.destroy_node()
-    rclpy.shutdown()
+    pub = node.create_subscription(Float32, "rannum", cb, 10)
+    rclpy.spin(node)
