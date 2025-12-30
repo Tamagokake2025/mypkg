@@ -18,5 +18,13 @@ def cb():
     node.get_logger().info("%.3f" % msg.data)
 
 def main():
-    node.create_timer(0.5, cb)
-    rclpy.spin(node)
+    try:
+        node.create_timer(0.5, cb)
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+
+if __name__ == '__main__':
+    main()
