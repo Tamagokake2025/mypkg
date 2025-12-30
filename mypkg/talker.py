@@ -13,11 +13,9 @@ pub = node.create_publisher(Float32, "rannum", 10)
 
 def cb():
     msg = Float32()
-    n = random.uniform(0.0,10.0)
-    msg.data = n
+    msg.data = random.uniform(0.0,10.0)
     pub.publish(msg)
-
-
+    node.get_logger().info("%.3f" % msg.data)
 
 def main():
     node.create_timer(0.5, cb)
