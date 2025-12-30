@@ -11,7 +11,7 @@ node = Node("listener")
 
 def cb(msg):
     global node
-    node.get_logger().info("乱数: %f" %msg.data)
+    node.get_logger().info("乱数: %.2f" %msg.data)
 
 
 def main():
