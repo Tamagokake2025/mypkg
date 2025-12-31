@@ -12,7 +12,7 @@ c = {}
 
 def cb(msg):
     n = int(msg.data)
-    i = f'{n}以上{n+1}以下'
+    i = f'{n}以上{n+1}未満'
 
     if i not in c:
         c[i] = 0
