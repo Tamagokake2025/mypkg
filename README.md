@@ -37,13 +37,12 @@ $ ros2 run mypkg listener
 [INFO] [1767182879.939480202] [listener]: 6以上7未満（1回目）
 [INFO] [1767182880.440337459] [listener]: 7以上8未満（3回目）
 [INFO] [1767182880.938297030] [listener]: 5以上6未満（2回目）
-[INFO] [1767182881.439563837] [listener]: 8以上9未満（1回目）
 （Ctrl+Cで終了）
 ```
 
 3. launchファイルでtalkerノード,listenerノードの両方を使用。
 ```
-s$ ros2 launch mypkg talk_listen.launch.py
+$ ros2 launch mypkg talk_listen.launch.py
 [INFO] [launch]: All log files can be found below /home/...
 [INFO] [launch]: Default logging verbosity is set to INFO
 [INFO] [talker-1]: process started with pid [618469]
@@ -70,10 +69,6 @@ s$ ros2 launch mypkg talk_listen.launch.py
 [listener-2] [INFO] [1767183257.262435652] [listener]: 4以上5未満（1回目）
 [talker-1] [INFO] [1767183257.761711488] [talker]: 2.922
 [listener-2] [INFO] [1767183257.762389273] [listener]: 2以上3未満（2回目）
-[talker-1] [INFO] [1767183258.261559935] [talker]: 1.452
-[listener-2] [INFO] [1767183258.262239563] [listener]: 1以上2未満（2回目）
-[talker-1] [INFO] [1767183258.761670663] [talker]: 8.925
-[listener-2] [INFO] [1767183258.762406019] [listener]: 8以上9未満（1回目）
 （Ctrl+Cで終了）
 ```
 
