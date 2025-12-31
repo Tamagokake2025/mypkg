@@ -1,4 +1,7 @@
-
+## パッケージに含まれるコマンド
+- talker  0.5 秒ごとに 0.000 ~ 10.000 の範囲で乱数をトピック名: /rannum　として出力する
+- listener  
+- tark_listen.launch
 
 ![test](https://github.com/tamagokake2025/mypkg/actions/workflows/test.yml/badge.svg)
 
