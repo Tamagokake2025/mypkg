@@ -78,6 +78,12 @@ $ ros2 launch mypkg talk_listen.launch.py
 - Ubuntu  
 　- リモートテスト済みバージョン: 22.04.5 LTS
 
+## 参考サイト
+- [ノードの参考](https://stray-cat.com/blog_01_4_about_publisher/)
+- [乱数の参考](https://note.nkmk.me/python-random-randrange-randint/)
+- [判定回数のカウントの参考](https://note.nkmk.me/python-in-basic/)
+- [bashでのif文の参考](https://af-e.net/linux-bash-if/)
+
 ## ライセンス
 - このソフトウェアパッケージは，3条項BSDライセンスの下，再頒布および使用が許可されます。
 - このパッケージのコードの一部は，下記のスライド（CC-BY-SA 4.0 by Ryuichi Ueda）のものを，本人の許可を得て自身の著作としたものです。
