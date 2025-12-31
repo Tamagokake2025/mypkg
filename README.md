@@ -72,7 +72,7 @@ $ ros2 launch mypkg talk_listen.launch.py
 （Ctrl+Cで終了）
 ```
 
-##テスト環境
+## テスト環境
 - python  
 　- リモートテスト済みバージョン: 3.7〜3.10
 - Ubuntu  
