@@ -1,9 +1,9 @@
 # パッケージに含まれるもの
 ![test](https://github.com/tamagokake2025/mypkg/actions/workflows/test.yml/badge.svg)
 - 'talker' ノード   
-0.5 秒ごとに 0.000 ~ 10.000 の範囲で乱数を トピック名:'/rannum'として出力する。
+0.5 秒ごとに 0.000 ~ 10.000 の範囲で乱数を トピック名:'/rannum'としてpublishする。
 - 'listener' ノード   
-'/rannum'の乱数を読み取り、小数点切り捨てでa以上b未満かを判定する。'listener'を起動してから、その範囲の乱数を受信した回数を数える。
+'/rannum'の乱数を読み取り、小数点切り捨てでa以上b未満かを判定する。'listener'を起動してから、その範囲の乱数を受信した回数を数える。数えた結果は、乱数を読み取る度に トピック名:'/numcou'としてpublishする。
 - 'tark_listen.launch' ファイル   
 'talker'と'listener'のlaunchファイル
 
@@ -76,7 +76,7 @@ $ ros2 launch mypkg talk_listen.launch.py
 - [乱数の参考](https://note.nkmk.me/python-random-randrange-randint/)
 - [判定回数のカウントの参考](https://note.nkmk.me/python-in-basic/)
 - [bashでのif文の参考](https://af-e.net/linux-bash-if/)
-
+- [パブリッシュする文字列を並べ替える方法の参考](https://maku77.github.io/p/qqkggoz/?utm_source=chatgpt.com)
 ## ライセンス
 - このソフトウェアパッケージは，3条項BSDライセンスの下，再頒布および使用が許可されます。
 - このパッケージのコードの一部は，下記のスライド（CC-BY-SA 4.0 by Ryuichi Ueda）のものを，本人の許可を得て自身の著作としたものです。
