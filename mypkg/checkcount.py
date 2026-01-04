@@ -7,7 +7,7 @@ from std_msgs.msg import Float32, String
 
 
 rclpy.init()
-node = Node("listener")
+node = Node("checkcount")
 c = {}
 pub = node.create_publisher(String, "numcou", 10)
 

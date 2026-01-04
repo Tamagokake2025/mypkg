@@ -9,13 +9,13 @@ import launch_ros.actions
 
 def generate_launch_description():
 
-    talker = launch_ros.actions.Node(
+    random = launch_ros.actions.Node(
             package='mypkg',
-            executable='talker',
+            executable='random',
             )
-    listener = launch_ros.actions.Node(
+    checkcount = launch_ros.actions.Node(
             package='mypkg',
-            executable='listener',
+            executable='checkcount',
             output='screen'
             )
-    return launch.LaunchDescription([talker, listener])
+    return launch.LaunchDescription([random, checkcount])

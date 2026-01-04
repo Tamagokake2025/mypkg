@@ -7,7 +7,7 @@ from std_msgs.msg import Float32
 import random
 
 rclpy.init()
-node = Node("talker")
+node = Node("random")
 pub = node.create_publisher(Float32, "rannum", 10)
 
 

@@ -1,70 +1,78 @@
 # パッケージに含まれるもの
 ![test](https://github.com/tamagokake2025/mypkg/actions/workflows/test.yml/badge.svg)
-- 'talker' ノード   
+- 'random' ノード   
 0.5 秒ごとに 0.000 ~ 10.000 の範囲で乱数をトピック名: '/rannum'(Float32型) としてpublishする。
-- 'listener' ノード   
-'/rannum'の乱数を読み取り、小数点切り捨てでa以上b未満かを判定する。'listener'を起動してから、その範囲の乱数を受信した回数を数える。数えた結果は、乱数を読み取る度にトピック名: '/numcou'(String型) としてpublishする。
-- 'tark_listen.launch' ファイル   
-'talker'と'listener'のlaunchファイル
+- 'checkcount' ノード   
+'/rannum'の乱数を読み取り、小数点切り捨てでa以上b未満かを判定する。'checkcount'を起動してから、その範囲の乱数を受信した回数を数える。数えた結果は、乱数を読み取る度にトピック名: '/numcou'(String型) としてpublishする。
+- 'random_count.launch' ファイル   
+'random'と'checkcount'のlaunchファイル
 
 ## 実行例
 1. 'talker'で乱数を発信。
 ```
-$ ros2 run mypkg talker
-[INFO] [1767182724.055183308] [talker]: 2.105
-[INFO] [1767182724.543917365] [talker]: 2.306
-[INFO] [1767182725.043113454] [talker]: 1.641
-[INFO] [1767182725.544174821] [talker]: 1.434
-[INFO] [1767182726.044014609] [talker]: 3.681
+$ ros2 run mypkg random
+[INFO] [1767547081.935833557] [random]: 1.246
+[INFO] [1767547082.419356870] [random]: 1.417
+[INFO] [1767547082.919340115] [random]: 0.782
+[INFO] [1767547083.418940644] [random]: 9.016
+[INFO] [1767547083.919719645] [random]: 7.333
+[INFO] [1767547084.420914546] [random]: 7.084
+[INFO] [1767547084.919737199] [random]: 3.138
+[INFO] [1767547085.421205072] [random]: 9.742
+[INFO] [1767547085.920649850] [random]: 8.392
+(Ctrl+Cで終了）
+```
+
+2. 'checkcount'で乱数を受信。乱数をどの範囲か判定する。(受信しないと何も表示されないため、別の端末からpublish)
+```
+$ ros2 run mypkg checkcount
+$ ros2 run mypkg checkcount
+[INFO] [1767547148.183329062] [checkcount]: 6以上7未満（1回目）
+[INFO] [1767547148.636761505] [checkcount]: 4以上5未満（1回目）
+[INFO] [1767547149.136375853] [checkcount]: 1以上2未満（1回目）
+[INFO] [1767547149.637586947] [checkcount]: 4以上5未満（2回目）
+[INFO] [1767547150.138244285] [checkcount]: 5以上6未満（1回目）
+[INFO] [1767547150.637261829] [checkcount]: 9以上10未満（1回目）
+[INFO] [1767547151.137597402] [checkcount]: 8以上9未満（1回目）
+[INFO] [1767547151.639136053] [checkcount]: 3以上4未満（1回目）
+[INFO] [1767547152.137490784] [checkcount]: 3以上4未満（2回目）
+[INFO] [1767547152.638034607] [checkcount]: 7以上8未満（1回目）
+[INFO] [1767547153.138539779] [checkcount]: 4以上5未満（3回目）
 （Ctrl+Cで終了）
 ```
 
-2. 'listener'で乱数を受信。乱数をどの範囲か判定する。(受信しないと何も表示されないため、別の端末からpublish)
+3. launchファイルで'random','checkcount'の両方を使用。
 ```
-$ ros2 run mypkg listener
-[INFO] [1767182877.452304404] [listener]: 4以上5未満（1回目）
-[INFO] [1767182877.938288796] [listener]: 7以上8未満（1回目）
-[INFO] [1767182878.439248829] [listener]: 5以上6未満（1回目）
-[INFO] [1767182878.938215487] [listener]: 7以上8未満（2回目）
-[INFO] [1767182879.439284868] [listener]: 2以上3未満（1回目）
-[INFO] [1767182879.939480202] [listener]: 6以上7未満（1回目）
-[INFO] [1767182880.440337459] [listener]: 7以上8未満（3回目）
-[INFO] [1767182880.938297030] [listener]: 5以上6未満（2回目）
-（Ctrl+Cで終了）
-```
-
-3. launchファイルで'talker','listener'の両方を使用。
-```
-$ ros2 launch mypkg talk_listen.launch.py
+$ ros2 launch mypkg random_count.launch.py
 [INFO] [launch]: All log files can be found below /home/...
 [INFO] [launch]: Default logging verbosity is set to INFO
-[INFO] [talker-1]: process started with pid [618469]
-[INFO] [listener-2]: process started with pid [618471]
-[listener-2] [INFO] [1767183252.771101988] [listener]: 5以上6未満（1回目）
-[talker-1] [INFO] [1767183252.771119985] [talker]: 5.490
-[talker-1] [INFO] [1767183253.261914578] [talker]: 6.964
-[listener-2] [INFO] [1767183253.263516760] [listener]: 6以上7未満（1回目）
-[talker-1] [INFO] [1767183253.761760157] [talker]: 1.632
-[listener-2] [INFO] [1767183253.762508041] [listener]: 1以上2未満（1回目）
-[talker-1] [INFO] [1767183254.260908221] [talker]: 3.843
-[listener-2] [INFO] [1767183254.261220673] [listener]: 3以上4未満（1回目）
-[talker-1] [INFO] [1767183254.762188802] [talker]: 5.345
-[listener-2] [INFO] [1767183254.763193178] [listener]: 5以上6未満（2回目）
-[talker-1] [INFO] [1767183255.261757949] [talker]: 5.271
-[listener-2] [INFO] [1767183255.262587135] [listener]: 5以上6未満（3回目）
-[talker-1] [INFO] [1767183255.761863051] [talker]: 5.461
-[listener-2] [INFO] [1767183255.762181442] [listener]: 5以上6未満（4回目）
-[talker-1] [INFO] [1767183256.261671742] [talker]: 2.933
-[listener-2] [INFO] [1767183256.262480028] [listener]: 2以上3未満（1回目）
-[talker-1] [INFO] [1767183256.761630254] [talker]: 5.563
-[listener-2] [INFO] [1767183256.762313839] [listener]: 5以上6未満（5回目）
-[talker-1] [INFO] [1767183257.261788141] [talker]: 4.544
-[listener-2] [INFO] [1767183257.262435652] [listener]: 4以上5未満（1回目）
-[talker-1] [INFO] [1767183257.761711488] [talker]: 2.922
-[listener-2] [INFO] [1767183257.762389273] [listener]: 2以上3未満（2回目）
+[INFO] [random-1]: process started with pid [629264]
+[INFO] [checkcount-2]: process started with pid [629266]
+[checkcount-2] [INFO] [1767546896.566834239] [checkcount]: 2以上3未満（1回目）
+[random-1] [INFO] [1767546896.566834259] [random]: 2.815
+[random-1] [INFO] [1767546897.045922733] [random]: 2.191
+[checkcount-2] [INFO] [1767546897.046493759] [checkcount]: 2以上3未満（2回目）
+[random-1] [INFO] [1767546897.549655688] [random]: 3.557
+[checkcount-2] [INFO] [1767546897.550774609] [checkcount]: 3以上4未満（1回目）
+[random-1] [INFO] [1767546898.049929257] [random]: 0.594
+[checkcount-2] [INFO] [1767546898.051213560] [checkcount]: 0以上1未満（1回目）
+[random-1] [INFO] [1767546898.547848225] [random]: 7.055
+[checkcount-2] [INFO] [1767546898.549350733] [checkcount]: 7以上8未満（1回目）
+[random-1] [INFO] [1767546899.047933816] [random]: 9.679
+[checkcount-2] [INFO] [1767546899.048705938] [checkcount]: 9以上10未満（1回目）
+[random-1] [INFO] [1767546899.547101565] [random]: 9.922
+[checkcount-2] [INFO] [1767546899.547576397] [checkcount]: 9以上10未満（2回目）
+[random-1] [INFO] [1767546900.047241766] [random]: 3.570
+[checkcount-2] [INFO] [1767546900.048246344] [checkcount]: 3以上4未満（2回目）
+[random-1] [INFO] [1767546900.549142181] [random]: 5.931
+[checkcount-2] [INFO] [1767546900.550156959] [checkcount]: 5以上6未満（1回目）
+[random-1] [INFO] [1767546901.048270898] [random]: 3.903
+[checkcount-2] [INFO] [1767546901.048870293] [checkcount]: 3以上4未満（3回目）
+[random-1] [INFO] [1767546901.546270667] [random]: 6.387
+[checkcount-2] [INFO] [1767546901.546967903] [checkcount]: 6以上7未満（1回目）
 （Ctrl+Cで終了）
 ```
-4. '/numcou'の内容('listener'がpublishしている時に確認可能。)
+4. '/numcou'の内容('checkcount'がpublishしている時に確認可能。)
 ```
 $ ros2 topic echo /numcou
 data: '1以上2未満: 1回
