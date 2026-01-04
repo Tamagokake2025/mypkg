@@ -1,21 +1,14 @@
 # パッケージに含まれるもの
 ![test](https://github.com/tamagokake2025/mypkg/actions/workflows/test.yml/badge.svg)
-- talker ノード(パブリッシャ)   
-0.5 秒ごとに 0.000 ~ 10.000 の範囲で乱数を トピック名:　/rannum　として出力する。
-- listener ノード(サブスクライバ)   
-/rannum の乱数を読み取り、小数点切り捨てでa以上b未満かを判定する。listenerを起動してから、その範囲の乱数を受信した回数を数える。
-- tark_listen.launch ファイル   
-talkerノードとlistenerノードのlaunchファイル
-
-## 使用方法
-　ターミナルで以下のコマンドを入力。クローン。ビルド。
-```
-$ git clone https://github.com/Tamagokake2025/myokg.git
-$ colcon build
-```
+- 'talker' ノード   
+0.5 秒ごとに 0.000 ~ 10.000 の範囲で乱数を トピック名:'/rannum'として出力する。
+- 'listener' ノード   
+'/rannum'の乱数を読み取り、小数点切り捨てでa以上b未満かを判定する。'listener'を起動してから、その範囲の乱数を受信した回数を数える。
+- 'tark_listen.launch' ファイル   
+'talker'と'listener'のlaunchファイル
 
 ## 実行例
-1. talkerノードで乱数を発信。
+1. 'talker'で乱数を発信。
 ```
 $ ros2 run mypkg talker
 [INFO] [1767182724.055183308] [talker]: 2.105
@@ -26,7 +19,7 @@ $ ros2 run mypkg talker
 （Ctrl+Cで終了）
 ```
 
-2. listenerノードで乱数を受信。乱数をどの範囲か判定する。(受信しないと何も表示されないため、別の端末からパブリッシュ)
+2. 'listener'で乱数を受信。乱数をどの範囲か判定する。(受信しないと何も表示されないため、別の端末からパブリッシュ)
 ```
 $ ros2 run mypkg listener
 [INFO] [1767182877.452304404] [listener]: 4以上5未満（1回目）
@@ -40,7 +33,7 @@ $ ros2 run mypkg listener
 （Ctrl+Cで終了）
 ```
 
-3. launchファイルでtalkerノード,listenerノードの両方を使用。
+3. launchファイルで'talker','listener'の両方を使用。
 ```
 $ ros2 launch mypkg talk_listen.launch.py
 [INFO] [launch]: All log files can be found below /home/...
