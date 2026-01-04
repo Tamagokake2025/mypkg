@@ -3,12 +3,13 @@
 
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Float32
+from std_msgs.msg import Float32, String
 
 
 rclpy.init()
 node = Node("listener")
 c = {}
+pub = node.create_publisher(String, "numcou", 10)
 
 def cb(msg):
     n = int(msg.data)
@@ -19,6 +20,16 @@ def cb(msg):
     c[i] += 1
 
     node.get_logger().info(f'{i}（{c[i]}回目）')
+
+    lines = []
+
+    for k in sorted(c.keys()):
+        lines.append(f'{k}: {c[k]}回')
+
+    cou_msg = String()
+    cou_msg.data = '\n'.join(lines)
+    pub.publish(cou_msg)
+
 
 def main():
     try:
