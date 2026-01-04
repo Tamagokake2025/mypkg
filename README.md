@@ -1,7 +1,7 @@
 # パッケージに含まれるもの
 ![test](https://github.com/tamagokake2025/mypkg/actions/workflows/test.yml/badge.svg)
 - 'talker' ノード   
-0.5 秒ごとに 0.000 ~ 10.000 の範囲で乱数をトピック名: '/rannum'(Float型) としてpublishする。
+0.5 秒ごとに 0.000 ~ 10.000 の範囲で乱数をトピック名: '/rannum'(Float32型) としてpublishする。
 - 'listener' ノード   
 '/rannum'の乱数を読み取り、小数点切り捨てでa以上b未満かを判定する。'listener'を起動してから、その範囲の乱数を受信した回数を数える。数えた結果は、乱数を読み取る度にトピック名: '/numcou'(String型) としてpublishする。
 - 'tark_listen.launch' ファイル   
