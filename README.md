@@ -26,7 +26,6 @@ $ ros2 run mypkg random
 2. 'checkcount'で乱数を受信。乱数をどの範囲か判定する。(受信しないと何も表示されないため、別の端末からpublish)
 ```
 $ ros2 run mypkg checkcount
-$ ros2 run mypkg checkcount
 [INFO] [1767547148.183329062] [checkcount]: 6以上7未満（1回目）
 [INFO] [1767547148.636761505] [checkcount]: 4以上5未満（1回目）
 [INFO] [1767547149.136375853] [checkcount]: 1以上2未満（1回目）
