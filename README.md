@@ -64,7 +64,7 @@ $ ros2 launch mypkg talk_listen.launch.py
 [listener-2] [INFO] [1767183257.762389273] [listener]: 2以上3未満（2回目）
 （Ctrl+Cで終了）
 ```
-ex. '/numcou'の内容(listenerがpublishしてる時に確認可能)
+4. '/numcou'の内容('listener'がpublishしている時に確認可能。)
 ```
 $ ros2 topic echo /numcou
 data: '1以上2未満: 1回
