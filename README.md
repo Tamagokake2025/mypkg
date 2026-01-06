@@ -8,7 +8,7 @@
 `random`と`checkcount`のlaunchファイル
 
 ## 実行例
-1. `talker`で乱数を発信。
+1. `random`で乱数を発信。
 ```
 $ ros2 run mypkg random
 [INFO] [1767547081.935833557] [random]: 1.246
