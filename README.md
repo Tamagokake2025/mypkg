@@ -1,4 +1,4 @@
-# このRos２パッケージに含まれるもの
+# このROS２パッケージに含まれるもの
 ![test](https://github.com/tamagokake2025/mypkg/actions/workflows/test.yml/badge.svg)
 - `random` ノード   
 0.5 秒ごとに 0.000 ~ 10.000 の範囲で乱数をトピック名: `/rannum`(Float32型) としてpublishする。
@@ -107,7 +107,7 @@ data: '1以上2未満: 2回
 ---
 （Ctrl+Cで終了）
 ```
-4. launchファイルで`random`,`checkcount`の両方を使用。
+4. launchファイルで`random`、`checkcount`の両方を起動。
 ```
 $ ros2 launch mypkg random_count.launch.py
 [INFO] [launch]: All log files can be found below /home/...
