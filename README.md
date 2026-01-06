@@ -1,14 +1,14 @@
-# パッケージに含まれるもの
+# このRos２パッケージに含まれるもの
 ![test](https://github.com/tamagokake2025/mypkg/actions/workflows/test.yml/badge.svg)
-- 'random' ノード   
-0.5 秒ごとに 0.000 ~ 10.000 の範囲で乱数をトピック名: '/rannum'(Float32型) としてpublishする。
-- 'checkcount' ノード   
-'/rannum'の乱数を読み取り、小数点切り捨てでa以上b未満かを判定する。'checkcount'を起動してから、その範囲の乱数を受信した回数を数える。数えた結果は、乱数を読み取る度にトピック名: '/numcou'(String型) としてpublishする。
-- 'random_count.launch' ファイル   
-'random'と'checkcount'のlaunchファイル
+- `random` ノード   
+0.5 秒ごとに 0.000 ~ 10.000 の範囲で乱数をトピック名: `/rannum`(Float32型) としてpublishする。
+- `checkcount` ノード   
+`/rannum`の乱数を読み取り、小数点切り捨てでa以上b未満かを判定する。`checkcount`を起動してから、その範囲の乱数を受信した回数を数える。数えた結果は、乱数を読み取る度にトピック名: `/numcou`(String型) としてpublishする。
+- `random_count.launch` ファイル   
+`random`と`checkcount`のlaunchファイル
 
 ## 実行例
-1. 'talker'で乱数を発信。
+1. `talker`で乱数を発信。
 ```
 $ ros2 run mypkg random
 [INFO] [1767547081.935833557] [random]: 1.246
@@ -23,7 +23,7 @@ $ ros2 run mypkg random
 (Ctrl+Cで終了）
 ```
 
-2. 'checkcount'で乱数を受信。乱数をどの範囲か判定する。(受信しないと何も表示されないため、別の端末からpublish)
+2. `checkcount`で乱数を受信。乱数をどの範囲か判定する。(受信しないと何も表示されないため、別の端末からpublish)
 ```
 $ ros2 run mypkg checkcount
 [INFO] [1767547148.183329062] [checkcount]: 6以上7未満（1回目）
@@ -40,38 +40,7 @@ $ ros2 run mypkg checkcount
 （Ctrl+Cで終了）
 ```
 
-3. launchファイルで'random','checkcount'の両方を使用。
-```
-$ ros2 launch mypkg random_count.launch.py
-[INFO] [launch]: All log files can be found below /home/...
-[INFO] [launch]: Default logging verbosity is set to INFO
-[INFO] [random-1]: process started with pid [629264]
-[INFO] [checkcount-2]: process started with pid [629266]
-[checkcount-2] [INFO] [1767546896.566834239] [checkcount]: 2以上3未満（1回目）
-[random-1] [INFO] [1767546896.566834259] [random]: 2.815
-[random-1] [INFO] [1767546897.045922733] [random]: 2.191
-[checkcount-2] [INFO] [1767546897.046493759] [checkcount]: 2以上3未満（2回目）
-[random-1] [INFO] [1767546897.549655688] [random]: 3.557
-[checkcount-2] [INFO] [1767546897.550774609] [checkcount]: 3以上4未満（1回目）
-[random-1] [INFO] [1767546898.049929257] [random]: 0.594
-[checkcount-2] [INFO] [1767546898.051213560] [checkcount]: 0以上1未満（1回目）
-[random-1] [INFO] [1767546898.547848225] [random]: 7.055
-[checkcount-2] [INFO] [1767546898.549350733] [checkcount]: 7以上8未満（1回目）
-[random-1] [INFO] [1767546899.047933816] [random]: 9.679
-[checkcount-2] [INFO] [1767546899.048705938] [checkcount]: 9以上10未満（1回目）
-[random-1] [INFO] [1767546899.547101565] [random]: 9.922
-[checkcount-2] [INFO] [1767546899.547576397] [checkcount]: 9以上10未満（2回目）
-[random-1] [INFO] [1767546900.047241766] [random]: 3.570
-[checkcount-2] [INFO] [1767546900.048246344] [checkcount]: 3以上4未満（2回目）
-[random-1] [INFO] [1767546900.549142181] [random]: 5.931
-[checkcount-2] [INFO] [1767546900.550156959] [checkcount]: 5以上6未満（1回目）
-[random-1] [INFO] [1767546901.048270898] [random]: 3.903
-[checkcount-2] [INFO] [1767546901.048870293] [checkcount]: 3以上4未満（3回目）
-[random-1] [INFO] [1767546901.546270667] [random]: 6.387
-[checkcount-2] [INFO] [1767546901.546967903] [checkcount]: 6以上7未満（1回目）
-（Ctrl+Cで終了）
-```
-4. '/numcou'の内容('checkcount'がpublishしている時に確認可能。)
+3. `/numcou`の内容(`checkcount`がpublishしている時に確認可能。)
 ```
 $ ros2 topic echo /numcou
 data: '1以上2未満: 1回
@@ -136,6 +105,37 @@ data: '1以上2未満: 2回
 
   8以上9未満: 2回'
 ---
+（Ctrl+Cで終了）
+```
+4. launchファイルで`random`,`checkcount`の両方を使用。
+```
+$ ros2 launch mypkg random_count.launch.py
+[INFO] [launch]: All log files can be found below /home/...
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [random-1]: process started with pid [629264]
+[INFO] [checkcount-2]: process started with pid [629266]
+[checkcount-2] [INFO] [1767546896.566834239] [checkcount]: 2以上3未満（1回目）
+[random-1] [INFO] [1767546896.566834259] [random]: 2.815
+[random-1] [INFO] [1767546897.045922733] [random]: 2.191
+[checkcount-2] [INFO] [1767546897.046493759] [checkcount]: 2以上3未満（2回目）
+[random-1] [INFO] [1767546897.549655688] [random]: 3.557
+[checkcount-2] [INFO] [1767546897.550774609] [checkcount]: 3以上4未満（1回目）
+[random-1] [INFO] [1767546898.049929257] [random]: 0.594
+[checkcount-2] [INFO] [1767546898.051213560] [checkcount]: 0以上1未満（1回目）
+[random-1] [INFO] [1767546898.547848225] [random]: 7.055
+[checkcount-2] [INFO] [1767546898.549350733] [checkcount]: 7以上8未満（1回目）
+[random-1] [INFO] [1767546899.047933816] [random]: 9.679
+[checkcount-2] [INFO] [1767546899.048705938] [checkcount]: 9以上10未満（1回目）
+[random-1] [INFO] [1767546899.547101565] [random]: 9.922
+[checkcount-2] [INFO] [1767546899.547576397] [checkcount]: 9以上10未満（2回目）
+[random-1] [INFO] [1767546900.047241766] [random]: 3.570
+[checkcount-2] [INFO] [1767546900.048246344] [checkcount]: 3以上4未満（2回目）
+[random-1] [INFO] [1767546900.549142181] [random]: 5.931
+[checkcount-2] [INFO] [1767546900.550156959] [checkcount]: 5以上6未満（1回目）
+[random-1] [INFO] [1767546901.048270898] [random]: 3.903
+[checkcount-2] [INFO] [1767546901.048870293] [checkcount]: 3以上4未満（3回目）
+[random-1] [INFO] [1767546901.546270667] [random]: 6.387
+[checkcount-2] [INFO] [1767546901.546967903] [checkcount]: 6以上7未満（1回目）
 （Ctrl+Cで終了）
 ```
 
